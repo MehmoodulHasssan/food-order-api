@@ -17,8 +17,9 @@ const PORT = process.env.PORT || 8080;
 //Middlewares
 app.use(
   cors({
-    origin:
-      ['https://food-order-pgo4xthc8-mehmoodulhasssans-projects.vercel.app'], // Your frontend URL
+    origin: '*'
+      // ['https://food-order-pgo4xthc8-mehmoodulhasssans-projects.vercel.app'],  Your frontend URL
+      
     credentials: true, // Allows cookies to be sent
   })
 );
