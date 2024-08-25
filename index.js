@@ -15,7 +15,6 @@ const PORT = process.env.PORT || 8080;
 
 // console.log(process.memoryUsage());
 //Middlewares
-app.options('*', cors());
 app.use(
   cors({
     origin:
