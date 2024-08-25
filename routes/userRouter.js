@@ -9,6 +9,7 @@ import {
   placeOrderController,
   signupController,
   verifyController,
+  getMealsController,
 } from '../controllers/usersControllers.js';
 
 const userRouter = express.Router();
@@ -32,5 +33,6 @@ userRouter.post('/logout', logoutController);
 userRouter.post('/forgot-password', forgotPasswordController);
 userRouter.post('/new-password', newPasswordController);
 userRouter.post('/place-order', authForMeals, placeOrderController);
+userRouter.get('/items', authForMeals, getMealsController);
 
 export default userRouter;

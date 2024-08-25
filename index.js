@@ -6,9 +6,14 @@ import cors from 'cors';
 import { authForMeals } from './middlewares/auth.js';
 import cookieParser from 'cookie-parser';
 import adminRouter from './routes/adminRouter.js';
+import dotenv from 'dotenv';
+import ApiError from './helpers/ApiError.js';
 
 const app = express();
+dotenv.config();
+const PORT = process.env.PORT || 8080;
 
+console.log(process.memoryUsage());
 //Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -32,16 +37,16 @@ connectDb();
 
 app.use('/user', userRouter);
 app.use('/admin', adminRouter);
-app.get('/user/items', authForMeals, async (req, res) => {
-  try {
-    const items = await foodItem.find();
-    if (!items) {
-      return res.status(404).json({ msg: 'no items found' });
-    }
-    res.json(items);
-  } catch (error) {
-    console.log('Error', error);
+
+app.use((err, req, res, next) => {
+  if (err instanceof ApiError) {
+    console.log(err);
+    //the commented out form is considered as a best practice
+    // return res.status(err.status).json({ error: err.message });
+    return res.status(err.status).json({ message: err.message });
   }
+  console.log(err.message);
+  return res.status(500).json({ error: 'Internal Server Error' });
 });
 
-app.listen(8080, () => console.log('server is listening...'));
+app.listen(PORT, () => console.log(`server is listening at ${PORT}...`));
