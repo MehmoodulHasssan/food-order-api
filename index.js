@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: 'http://localhost:3000', // Your frontend URL
+    origin: 'https://food-order.vercel.app', // Your frontend URL
     credentials: true, // Allows cookies to be sent
   })
 );
