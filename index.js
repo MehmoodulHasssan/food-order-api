@@ -19,7 +19,7 @@ app.options('*', cors());
 app.use(
   cors({
     origin:
-      'https://food-order-pgo4xthc8-mehmoodulhasssans-projects.vercel.app', // Your frontend URL
+      ['https://food-order-pgo4xthc8-mehmoodulhasssans-projects.vercel.app'], // Your frontend URL
     credentials: true, // Allows cookies to be sent
   })
 );
