@@ -15,9 +15,6 @@ const PORT = process.env.PORT || 8080;
 
 console.log(process.memoryUsage());
 //Middlewares
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(
   cors({
     origin:
@@ -25,6 +22,10 @@ app.use(
     credentials: true, // Allows cookies to be sent
   })
 );
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+
 app.use(express.static('public'));
 
 app.use((req, res, next) => {
