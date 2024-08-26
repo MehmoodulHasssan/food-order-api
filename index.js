@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 8080;
 app.use(
   cors({
     origin: 'https://food-order-pgo4xthc8-mehmoodulhasssans-projects.vercel.app', // Your frontend URL
-    credentials: false, // Allows cookies to be sent
+    credentials: true, // Allows cookies to be sent
     methods: 'GET,POST,PATCH,DELETE,OPTIONS', // Allowed methods
     allowedHeaders: 'Content-Type,Authorization', // Allowed headers
   })
