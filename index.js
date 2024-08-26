@@ -17,13 +17,14 @@ const PORT = process.env.PORT || 8080;
 //Middlewares
 app.use(
   cors({
-    origin: '*'
-      // ['https://food-order-pgo4xthc8-mehmoodulhasssans-projects.vercel.app'],  Your frontend URL
-      
+    origin: 'https://food-order-pgo4xthc8-mehmoodulhasssans-projects.vercel.app', // Your frontend URL
     credentials: true, // Allows cookies to be sent
+    methods: 'GET,POST,PATCH,DELETE,OPTIONS', // Allowed methods
+    allowedHeaders: 'Content-Type,Authorization', // Allowed headers
   })
 );
-app.options('*', cors())
+
+app.options('*', cors()); // Preflight request handling
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
