@@ -15,15 +15,12 @@ const PORT = process.env.PORT || 8080;
 
 // console.log(process.memoryUsage());
 //Middlewares
-app.use(
-  cors({
-    origin: ['https://food-order-ljmm5l4fe-mehmoodulhasssans-projects.vercel.app',
-             'https://food-order-khaki.vercel.app']
-    credentials: true, // Allows cookies to be sent
-  })
-);
+app.use(cors({
+  origin: '*',
+  credentials: true,
+}));
 
-// app.options('*', cors()); // Preflight request handling
+app.options('*', cors()); // Preflight request handling
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
