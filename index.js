@@ -16,10 +16,8 @@ const PORT = process.env.PORT || 8080;
 // console.log(process.memoryUsage());
 //Middlewares
 app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
-  credentials: true,
+  origin: 'https://food-order-khaki.vercel.app', // Your frontend URL
+  credentials: true, // Allows cookies to be sent
 }));
 
 app.options('*', cors()); // Preflight request handling
