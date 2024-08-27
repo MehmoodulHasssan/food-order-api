@@ -20,12 +20,10 @@ app.use(
     origin: ['https://food-order-ljmm5l4fe-mehmoodulhasssans-projects.vercel.app',
              'https://food-order-khaki.vercel.app']
     credentials: true, // Allows cookies to be sent
-    methods: 'GET,POST,PATCH,DELETE,OPTIONS', // Allowed methods
-    // allowedHeaders: 'Content-Type,Authorization', // Allowed headers
   })
 );
 
-app.options('*', cors()); // Preflight request handling
+// app.options('*', cors()); // Preflight request handling
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
