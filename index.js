@@ -21,7 +21,7 @@ app.use(
              'https://food-order-khaki.vercel.app']
     credentials: true, // Allows cookies to be sent
     methods: 'GET,POST,PATCH,DELETE,OPTIONS', // Allowed methods
-    allowedHeaders: 'Content-Type,Authorization', // Allowed headers
+    // allowedHeaders: 'Content-Type,Authorization', // Allowed headers
   })
 );
 
