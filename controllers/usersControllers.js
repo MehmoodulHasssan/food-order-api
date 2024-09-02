@@ -7,7 +7,7 @@ import sendVerificationMail from '../helpers/sendVerificationMail.js';
 import { foodItem } from '../models/foodItem.js';
 import { ObjectId } from 'mongodb';
 import { Order } from '../models/Order.js';
-import { calcTotalPrice } from '../helpers/CalcTotalPrice.js';
+// import { calcTotalPrice } from '../helpers/CalcTotalPrice.js';
 
 export const signupController = async (req, res, next) => {
   try {
@@ -224,7 +224,12 @@ export const placeOrderController = async (req, res, next) => {
         _id: new ObjectId(item._id),
       };
     });
-
+const calcTotalPrice = (items) => {
+  return items.reduce(
+    (total, item) => total + Number(item.price) * Number(item.quantity),
+    0
+  );
+};
     const totalPrice = calcTotalPrice(items);
 
     await Order.create({
