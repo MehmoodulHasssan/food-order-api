@@ -62,6 +62,9 @@ connectDb();
 
 app.use('/user', userRouter);
 app.use('/admin', adminRouter);
+app.get('/', async(req, res) => {
+  res.send('hello from backend')
+})
 
 app.use((err, req, res, next) => {
   if (err instanceof ApiError) {
