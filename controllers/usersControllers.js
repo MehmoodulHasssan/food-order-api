@@ -7,6 +7,8 @@ import sendVerificationMail from '../helpers/sendVerificationMail.js';
 import { foodItem } from '../models/foodItem.js';
 import { ObjectId } from 'mongodb';
 import { Order } from '../models/Order.js';
+import dotenv from 'dotenv'
+dotenv.config()
 // import calcTotalPrice from '../helpers/CalcTotalPrice.js';
 
 export const signupController = async (req, res, next) => {
@@ -66,6 +68,7 @@ export const loginController = async (req, res, next) => {
     if (!compare) {
       return next(ApiError.badRequest('Incorrect password'));
     }
+    console.log('tokenKey', process.env.TOKEN_KEY)
 
     const token = jwt.sign(
       { id: user._id, email: user.email, isAdmin: user.isAdmin },
@@ -74,6 +77,7 @@ export const loginController = async (req, res, next) => {
         expiresIn: '12h',
       }
     );
+    console.log('token', token)
     res.cookie('token', token, {
       httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
       secure: true, // Ensures the cookie is sent only over HTTPS
