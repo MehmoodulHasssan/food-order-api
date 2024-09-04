@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 8080;
 
 app.use(
   cors({
-    origin: 'https://food-order-khaki.vercel.app', // Frontend URL
+    origin: ['https://food-order-khaki.vercel.app', 'http://localhost:3000'], // Frontend URL
     credentials: true, // Allow credentials like cookies
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], // Allowed methods
     allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
