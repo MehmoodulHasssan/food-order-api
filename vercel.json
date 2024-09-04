@@ -6,15 +6,10 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
+  "routes":
        {
       "src": "/(.*)",
       "dest": "/index.js",
       
     }
-  ],
-  "env": {
-    "MONGO_URI": "mongodb+srv://mehmood:53lkLQ3ZGIea5LzD@cluster0.w0n8svt.mongodb.net/REACT_FOOD?retryWrites=true&w=majority&appName=Cluster0",
-    "TOKEN_KEY": "mehmood"
-  }
 }
