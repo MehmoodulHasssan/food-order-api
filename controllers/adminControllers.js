@@ -4,7 +4,8 @@ import sendOrderMail from '../helpers/sendOrderMail.js';
 import { check, validationResult } from 'express-validator';
 import { Order } from '../models/Order.js';
 import ApiError from '../helpers/ApiError.js';
-
+import { config } from 'dotenv';
+config();
 export const adminLoginController = async (req, res, next) => {
   try {
     const errors = validationResult(req);
@@ -31,6 +32,7 @@ export const adminLoginController = async (req, res, next) => {
       httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
       secure: true, // Ensures the cookie is sent only over HTTPS
       maxAge: 43200000, // Cookie expiration time in milliseconds
+      sameSite: 'None',
     });
     return res.status(200).json({ msg: 'cookie sent' });
   } catch (error) {

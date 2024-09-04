@@ -1,6 +1,8 @@
 import User from '../models/User.js';
 import bcryptjs from 'bcryptjs';
 import nodemailer from 'nodemailer';
+import { config } from 'dotenv';
+config();
 
 const sendVerificationMail = async ({ email, emailType, userId }) => {
   try {
@@ -26,18 +28,26 @@ const sendVerificationMail = async ({ email, emailType, userId }) => {
       }
     }
     //create trasnport for sending mail
+    // Create a transporter object using Gmail SMTP
     const transporter = nodemailer.createTransport({
-      host: 'sandbox.smtp.mailtrap.io',
-      port: 2525,
+      service: 'gmail',
       auth: {
-        user: 'a0afb90f8125bb',
-        pass: 'ca6823259bcff1',
+        user: process.env.EMAIL_ADMIN,
+        pass: process.env.EMAIL_PASSWORD,
       },
     });
+    // const transporter = nodemailer.createTransport({
+    //   host: 'sandbox.smtp.mailtrap.io',
+    //   port: 2525,
+    //   auth: {
+    //     user: 'a0afb90f8125bb',
+    //     pass: 'ca6823259bcff1',
+    //   },
+    // });
 
     const mailResponse = await transporter
       .sendMail({
-        from: 'mehmoodjutt33@gmail.com',
+        from: process.env.EMAIL_ADMIN,
         to: email,
         subject:
           emailType && emailType === 'VERIFY'

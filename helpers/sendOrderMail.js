@@ -1,22 +1,31 @@
 import User from '../models/User.js';
 import bcryptjs from 'bcryptjs';
 import nodemailer from 'nodemailer';
+import { config } from 'dotenv';
+config();
 
 const sendOrderMail = async ({ email, emailType }) => {
   try {
     //create trasnport for sending mail
     const transporter = nodemailer.createTransport({
-      host: 'sandbox.smtp.mailtrap.io',
-      port: 2525,
+      service: 'gmail',
       auth: {
-        user: 'a0afb90f8125bb',
-        pass: 'ca6823259bcff1',
+        user: process.env.EMAIL_ADMIN,
+        pass: process.env.EMAIL_PASSWORD,
       },
     });
+    // const transporter = nodemailer.createTransport({
+    //   host: 'sandbox.smtp.mailtrap.io',
+    //   port: 2525,
+    //   auth: {
+    //     user: 'a0afb90f8125bb',
+    //     pass: 'ca6823259bcff1',
+    //   },
+    // });
 
     const mailResponse = await transporter
       .sendMail({
-        from: 'mehmoodjutt33@gmail.com',
+        from: process.env.EMAIL_ADMIN,
         to: email,
         subject: emailType === 'declined' ? 'Order Declined' : 'Order Approved',
         html: `<p>Your Order has been ${
