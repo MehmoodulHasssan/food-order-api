@@ -81,6 +81,7 @@ export const loginController = async (req, res, next) => {
     res.cookie('token', token, {
       httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
       secure: true, // Ensures the cookie is sent only over HTTPS
+      sameSite: 'None', //Ensure cookies can be sent to other types of domains as well
       maxAge: 43200000, // Cookie expiration time in milliseconds
     });
     return res.status(200).json({ msg: 'cookie sent' });
